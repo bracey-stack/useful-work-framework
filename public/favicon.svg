@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="skullGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f4"/>
+      <stop offset="100%" style="stop-color:#d6d3d1"/>
+    </linearGradient>
+  </defs>
+  <!-- Skull shape -->
+  <ellipse cx="16" cy="13" rx="12" ry="11" fill="url(#skullGrad)" stroke="#78716c" stroke-width="1"/>
+  <!-- Jaw -->
+  <path d="M8 18 Q8 26 16 26 Q24 26 24 18" fill="url(#skullGrad)" stroke="#78716c" stroke-width="1"/>
+  <!-- Left eye socket -->
+  <ellipse cx="11" cy="12" rx="3.5" ry="4" fill="#292524"/>
+  <!-- Right eye socket -->
+  <ellipse cx="21" cy="12" rx="3.5" ry="4" fill="#292524"/>
+  <!-- Nose -->
+  <path d="M16 15 L14 19 L16 18 L18 19 Z" fill="#44403c"/>
+  <!-- Teeth -->
+  <rect x="10" y="22" width="2.5" height="3" rx="0.5" fill="#fafaf9" stroke="#a8a29e" stroke-width="0.5"/>
+  <rect x="13" y="22" width="2.5" height="3" rx="0.5" fill="#fafaf9" stroke="#a8a29e" stroke-width="0.5"/>
+  <rect x="16.5" y="22" width="2.5" height="3" rx="0.5" fill="#fafaf9" stroke="#a8a29e" stroke-width="0.5"/>
+  <rect x="19.5" y="22" width="2.5" height="3" rx="0.5" fill="#fafaf9" stroke="#a8a29e" stroke-width="0.5"/>
+</svg>
