@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import * as api from '../api';
+import ChatView from './ChatView';
 
 // Theory Modal Component
 function TheoryModal({ isOpen, onClose }) {
@@ -777,6 +778,7 @@ export default function UsefulWorkFramework() {
   const Navigation = () => (
     <div className="fixed top-4 right-4 z-50">
       <div className="flex flex-col bg-white rounded-2xl p-1.5 border border-stone-200 shadow-lg gap-1">
+        {/* UI Mode Button */}
         <button
           onClick={() => setView('main')}
           className={`p-2.5 rounded-xl transition-all flex items-center justify-center ${
@@ -784,12 +786,31 @@ export default function UsefulWorkFramework() {
               ? 'bg-stone-800 text-white shadow-sm'
               : 'text-stone-500 hover:text-stone-700 hover:bg-stone-50'
           }`}
-          title="Today"
+          title="UI Mode"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
         </button>
+
+        {/* CUI Mode Button */}
+        <button
+          onClick={() => setView('chat')}
+          className={`p-2.5 rounded-xl transition-all flex items-center justify-center ${
+            view === 'chat'
+              ? 'bg-stone-800 text-white shadow-sm'
+              : 'text-stone-500 hover:text-stone-700 hover:bg-stone-50'
+          }`}
+          title="Chat Mode"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </button>
+
+        {/* Divider */}
+        <div className="h-px bg-stone-200 my-1"></div>
+
         <button
           onClick={() => setView('calendar')}
           className={`p-2.5 rounded-xl transition-all flex items-center justify-center ${
@@ -839,6 +860,16 @@ export default function UsefulWorkFramework() {
     return (
       <>
         <LifeInWeeks birthDate="1990-05-07" lifeExpectancy={80} />
+        <Navigation />
+        <TheoryModal isOpen={showTheory} onClose={() => setShowTheory(false)} />
+      </>
+    );
+  }
+
+  if (view === 'chat') {
+    return (
+      <>
+        <ChatView onItemsChange={loadItems} />
         <Navigation />
         <TheoryModal isOpen={showTheory} onClose={() => setShowTheory(false)} />
       </>

@@ -38,3 +38,16 @@ export async function deleteItem(id) {
   });
   if (!response.ok) throw new Error('Failed to delete item');
 }
+
+export async function sendChatMessage(messages) {
+  const response = await fetch(`${API_BASE}/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages })
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.details || 'Failed to send message');
+  }
+  return response.json();
+}
