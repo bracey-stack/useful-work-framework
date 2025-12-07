@@ -79,9 +79,65 @@ export default function ChatView({ onItemsChange }) {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col">
+    <div className="min-h-screen bg-stone-50 flex flex-col relative">
+      {/* Dot grid background */}
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #d6d3d1 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      />
+
+      {/* Skull watermark - emerging through dots */}
+      <div className="fixed inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
+        <div
+          className="relative"
+          style={{
+            width: '60vmin',
+            height: '60vmin',
+            maxWidth: '400px',
+            maxHeight: '400px',
+          }}
+        >
+          {/* Shadow layer for depth */}
+          <img
+            src="/favicon.svg"
+            alt=""
+            className="absolute inset-0 w-full h-full"
+            style={{
+              opacity: 0.03,
+              filter: 'blur(8px)',
+              transform: 'translate(4px, 4px) scale(1.02)',
+            }}
+          />
+          {/* Main skull with mask effect */}
+          <img
+            src="/favicon.svg"
+            alt=""
+            className="absolute inset-0 w-full h-full"
+            style={{
+              opacity: 0.06,
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.05))',
+            }}
+          />
+          {/* Highlight layer for 3D emergence */}
+          <img
+            src="/favicon.svg"
+            alt=""
+            className="absolute inset-0 w-full h-full"
+            style={{
+              opacity: 0.02,
+              filter: 'blur(1px)',
+              transform: 'translate(-2px, -2px)',
+              mixBlendMode: 'overlay',
+            }}
+          />
+        </div>
+      </div>
+
       {/* Header */}
-      <header className="bg-white border-b border-stone-200 p-4 sm:p-6">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-stone-200 p-4 sm:p-6 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
@@ -105,7 +161,7 @@ export default function ChatView({ onItemsChange }) {
       </header>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 relative z-10">
         <div className="max-w-2xl mx-auto space-y-4">
           {messages.length === 0 ? (
             <div className="text-center py-12">
@@ -184,7 +240,7 @@ export default function ChatView({ onItemsChange }) {
       </div>
 
       {/* Input Area */}
-      <div className="bg-white border-t border-stone-200 p-4 sm:p-6">
+      <div className="bg-white/80 backdrop-blur-sm border-t border-stone-200 p-4 sm:p-6 relative z-10">
         <div className="max-w-2xl mx-auto">
           <div className="flex gap-3">
             <div className="flex-1 relative">
