@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import Markdown from 'react-markdown';
 import * as api from '../api';
 
 export default function ChatView({ onItemsChange }) {
@@ -149,9 +150,15 @@ export default function ChatView({ onItemsChange }) {
                       : 'bg-white border border-stone-200 text-stone-700 rounded-bl-md shadow-sm'
                   }`}
                 >
-                  <div className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">
-                    {msg.content}
-                  </div>
+                  {msg.role === 'user' ? (
+                    <div className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">
+                      {msg.content}
+                    </div>
+                  ) : (
+                    <div className="text-sm sm:text-base leading-relaxed prose prose-stone prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:text-stone-800 prose-headings:text-stone-800 prose-headings:font-semibold prose-h1:text-base prose-h2:text-base prose-h3:text-sm">
+                      <Markdown>{msg.content}</Markdown>
+                    </div>
+                  )}
                 </div>
               </div>
             ))
